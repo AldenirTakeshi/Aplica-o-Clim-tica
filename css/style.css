@@ -76,8 +76,12 @@ body {
   margin: 0.6rem;
 }
 
-#coutry {
+#country {
   height: 15px;
+}
+#description {
+  font-weight: bolder;
+  text-transform: capitalize;
 }
 
 #description-container {
