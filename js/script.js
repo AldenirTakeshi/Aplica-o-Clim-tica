@@ -1,4 +1,4 @@
-const apiKey = "  ";
+const apiKey = "ef8b32bdaca9d5613b4ce1eb35db3d38";
 const apiCoutryUrl = "https://countryflagsapi.com/png/";
 
 const cityInput = document.querySelector("#city-input");
@@ -14,11 +14,15 @@ const windElement = document.querySelector("#wind span");
 
 //Funções
 const getWeatherData = async (city) => {
-  const apiWeatherURL =
+  const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}&lang=pt_br`;
+
+  const res = await fetch(apiWeatherURL);
+  const data = await res.json();
+  console.log(data);
 };
 
 const showWeatherData = (city) => {
-  console.log(city);
+  getWeatherData(city);
 };
 
 //Eventos
