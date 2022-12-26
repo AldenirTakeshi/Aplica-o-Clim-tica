@@ -1,5 +1,6 @@
-const apiKey = "ef8b32bdaca9d5613b4ce1eb35db3d38";
+const apiKey = "";
 const apiCountryUrl = "https://countryflagsapi.com/png/";
+const apiUnsplash = "https://source.unsplash.com/1600x900/?";
 
 const cityInput = document.querySelector("#city-input");
 const searchBtn = document.querySelector("#search");
@@ -11,6 +12,7 @@ const weatherIconElement = document.querySelector("#weather-icon");
 const countryElement = document.querySelector("#country");
 const umidityElement = document.querySelector("#umidity span");
 const windElement = document.querySelector("#wind span");
+
 const weatherContainer = document.querySelector("#weather-data");
 
 //Funções
@@ -19,7 +21,6 @@ const getWeatherData = async (city) => {
 
   const res = await fetch(apiWeatherURL);
   const data = await res.json();
-  console.log(data);
 
   return data;
 };
@@ -40,6 +41,13 @@ const showWeatherData = async (city) => {
   );
   umidityElement.innerText = `${data.main.humidity}%`;
   windElement.innerText = `${data.wind.speed}km/h`;
+  weatherContainer.classList.remove("hide");
+
+  // Change Image
+  document.body.style.backgroundImage = `url("${
+    apiUnsplash + city
+  }")`;
+
   weatherContainer.classList.remove("hide");
 };
 
