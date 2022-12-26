@@ -5,11 +5,7 @@
 }
 
 body {
-  background: linear-gradient(
-    180deg,
-    hwb(245 30% 7%) 0%,
-    #8dd0f5 100%
-  );
+  background: linear-gradient(180deg, hwb(245 30% 7%) 0%, #8dd0f5 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,4 +97,10 @@ body {
   border-right: 1px solid #fff;
   margin: 0.6rem;
   padding: 0.6rem;
+}
+
+#error-message {
+  border-top: solid 1px white;
+  margin: 1rem;
+  padding-top: 2px;
 }

@@ -15,6 +15,8 @@ const windElement = document.querySelector("#wind span");
 
 const weatherContainer = document.querySelector("#weather-data");
 
+const errorMessageContainer = document.querySelector("#error-message");
+
 //Funções
 const getWeatherData = async (city) => {
   const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}&lang=pt_br`;
@@ -25,8 +27,20 @@ const getWeatherData = async (city) => {
   return data;
 };
 
+//Tratamento de Erro
+const showErrorMessage = () => {
+  errorMessageContainer.classList.remove("hide");
+  weatherContainer.classList.add("hide");
+};
+
 const showWeatherData = async (city) => {
   const data = await getWeatherData(city);
+
+  if (data.cod === "404") {
+    showErrorMessage();
+  } else {
+    errorMessageContainer.classList.add("hide");
+  }
 
   cityElement.innerText = data.name;
   tempElement.innerText = parseInt(data.main.temp);
@@ -35,18 +49,13 @@ const showWeatherData = async (city) => {
     "src",
     `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`
   );
-  countryElement.setAttribute(
-    "src",
-    apiCountryUrl + data.sys.country
-  );
+  countryElement.setAttribute("src", apiCountryUrl + data.sys.country);
   umidityElement.innerText = `${data.main.humidity}%`;
   windElement.innerText = `${data.wind.speed}km/h`;
   weatherContainer.classList.remove("hide");
 
   // Change Image
-  document.body.style.backgroundImage = `url("${
-    apiUnsplash + city
-  }")`;
+  document.body.style.backgroundImage = `url("${apiUnsplash + city}")`;
 
   weatherContainer.classList.remove("hide");
 };
